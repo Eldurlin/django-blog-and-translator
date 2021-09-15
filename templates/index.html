@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Index Page
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <h1>Blog posts you can explore:</h1>
+
+        {% for post in post_list %}
+        <div class="card m-3">
+            <div class="card-body">
+                <h2 class="card-title">
+                    {{ post.title }}
+                </h2>
+
+                <p>
+                    {{ post.content | slice:"500" }}
+                </p>
+
+                <p class="card-text">
+                    Author: {{ post.author }}
+                </p>
+
+                <a class="btn btn-primary" href="{% url 'blog_view' post.slug %}">Read more</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
